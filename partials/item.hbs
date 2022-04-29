@@ -1,0 +1,44 @@
+<article class="item{{#if is_loop}} is-loop{{else if is_featured}} is-featured{{else if is_special}} is-special{{/if}}{{#if feature_image}} is-image{{/if}}{{#if is_big}} is-big{{/if}}">
+	{{#if show_featured_label}}
+	<small>{{t "Featured"}}</small>
+	{{/if}}
+	<a href="{{url}}" class="item-content">
+		{{#if feature_image}}
+		<div class="item-image global-image">
+			{{>images/loop_image}}
+		</div>
+		{{/if}}
+		{{>members/visibility_label}}
+		<div class="item-title-wrap">
+			<h2 class="item-title">{{title}}</h2>
+		</div>
+	</a>
+	<div class="item-meta global-meta">
+		{{t "by"}}
+		{{#has author="count:1"}}
+		{{authors}}
+		{{else has author="count:2"}}
+		{{authors separator=(t "and")}}
+		{{else has author="count:>2"}}
+		{{authors limit="1"}}
+		{{t "and others"}}
+		{{/has}}
+		{{#if tags}}{{tags limit="1" separator="" prefix=(t "in")}}{{/if}}
+		{{#if is_featured}}
+		<time datetime="{{date format="YYYY-MM-DD"}}">{{t "Featured"}} — {{date published_at format="MMMM, YYYY"}}</time>
+		{{else if show_time}}
+		<time datetime="{{date format="YYYY-MM-DD"}}">{{date published_at}}<span> — {{reading_time minute=(t "1 minute read") minutes=(t "% minutes read")}}</span></time>
+		{{/if}}
+	</div>
+	{{#has any="excerpt,custom_excerpt"}}
+	{{#if show_excerpt}}
+	<p class="item-excerpt">
+		{{#if custom_excerpt}}{{custom_excerpt}}{{else if excerpt}}{{excerpt}}...{{/if}}
+	</p>
+	{{else unless feature_image}}
+	<p class="item-excerpt">
+		{{#if custom_excerpt}}{{custom_excerpt}}{{else if excerpt}}{{excerpt}}...{{/if}}
+	</p>
+	{{/if}}
+	{{/has}}
+</article>

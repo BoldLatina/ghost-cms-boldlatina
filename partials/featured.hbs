@@ -1,0 +1,17 @@
+{{#get "posts" limit="7" filter="featured:true" include="authors,tags,tiers" as |featured_posts|}}
+{{#if featured_posts}}
+<div class="featured-section">
+	<div class="featured-wrap{{#foreach featured_posts}}{{#if @last}} featured-items-{{@number}}{{/if}}{{/foreach}}">
+		{{#foreach featured_posts to="1"}}
+		{{>item is_featured=true show_excerpt=true show_featured_label=true is_featured_first=true}}
+		{{^match @custom.hero_title_position "Center and overlap"}}
+		{{>members/subscribe_form}}
+		{{/match}}
+		{{/foreach}}
+		{{#foreach featured_posts from="2"}}
+		{{>item is_featured=true tags=false is_featured_other=true}}
+		{{/foreach}}
+	</div>
+</div>
+{{/if}}
+{{/get}}

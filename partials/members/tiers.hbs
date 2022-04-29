@@ -1,0 +1,72 @@
+<div class="membership-section">
+	<div class="membership-wrap">
+		{{^if membership_page}}
+		<div class="account-subtitle-wrap">
+			<h3 class="account-subtitle global-subtitle global-dynamic-color">{{t "Plans"}}</h3>
+		</div>
+		{{/if}}
+		<div class="membership-switch" data-active-price="yearly">
+			<button data-price="monthly">{{t "Monthly"}}</button>
+			<button data-price="yearly">{{t "Yearly"}}</button>
+		</div>
+		<div class="membership-cards">
+			{{^if @member}}
+			{{#if membership_page}}
+			{{#get "tiers" include="benefits" filter="visibility:public+type:free"}}
+			{{#foreach tiers}}
+			<div class="membership-card is-free">
+				<div class="membership-card-content">
+					<h2 class="membership-card-price">{{t "Free"}}</h2>
+					{{#if description}}<p>{{description}}</p>{{/if}}
+					{{#if benefits}}
+					<div class="membership-card-list">
+						<ul>
+							{{#foreach benefits}}
+							<li>{{{name}}}</li>
+							{{/foreach}}
+						</ul>
+					</div>
+					{{/if}}
+				</div>
+				<a href="{{@site.url}}/signup/" class="membership-button global-button">{{t "Sign up for free"}}</a>
+			</div>
+			{{/foreach}}
+			{{/get}}
+			{{/if}}
+			{{/if}}
+			{{#get "tiers" include="monthly_price,yearly_price,benefits" filter="visibility:public+type:paid" limit="all"}}
+			{{#foreach tiers}}
+			<div class="membership-card">
+				<div class="global-members-label membership-label">{{name}}</div>
+				<div class="membership-card-content">
+					<h2 class="membership-card-price" data-monthly>{{#if monthly_price}}{{price monthly_price}}{{else}}$0{{/if}}<span>/ {{t "month"}}</span></h2>
+					<h2 class="membership-card-price" data-yearly>{{#if yearly_price}}{{price yearly_price}}{{else}}$0{{/if}}<span>/ {{t "year"}}</span></h2>
+					{{#if description}}<p>{{description}}</p>{{/if}}
+					{{#if benefits}}
+					<div class="membership-card-list">
+						<ul>
+							{{#foreach benefits}}
+							<li>{{{name}}}</li>
+							{{/foreach}}
+						</ul>
+					</div>
+					{{/if}}
+				</div>
+				<a href="javascript:" data-members-plan="{{monthly_price.id}}" class="membership-button global-button" data-monthly>{{t "Sign up now"}}</a>
+				<a href="javascript:" data-members-plan="{{yearly_price.id}}" class="membership-button global-button" data-yearly>{{t "Sign up now"}}</a>
+			</div>
+			{{/foreach}}
+			{{/get}}
+		</div>
+	</div>
+	{{^if @member}}
+	{{#if membership_page}}
+	<small class="global-question">{{t "Already have an account?"}} <a href="{{@site.url}}/signin/" class="global-button-arrow">{{>icons/site/arrow}}{{t "Sign in"}}</a></small>
+	{{/if}}
+	{{/if}}
+</div>
+{{#contentFor "script_js"}}
+<script>
+!function(){const e=document.querySelector(".membership-switch"),r=document.querySelectorAll(".membership-switch button"),c=document.querySelectorAll(".membership-cards [data-monthly]"),l=document.querySelectorAll(".membership-cards [data-yearly]");c.length>0&&l.length>0&&r.forEach(r=>{e.style.display="flex",r.addEventListener("click",t=>{e.setAttribute("data-active-price",r.getAttribute("data-price"))})})}();
+</script>
+{{/contentFor}}

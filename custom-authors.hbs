@@ -1,0 +1,63 @@
+{{!< default}}
+{{#post}}
+<div class="archive-header post-header">
+	<div class="post-header-wrap is-center global-dynamic-color">
+		<div class="post-header-content">
+			<h1 class="post-title">{{title}}</h1>
+			{{#if custom_excerpt}}
+			<p class="post-excerpt global-excerpt">{{custom_excerpt}}</p>
+			{{/if}}
+		</div>
+	</div>
+	<div class="custom-archive-section">
+		{{#get "authors" limit="all" include="count.posts" order="count.posts desc" as |authors|}}
+		{{#if authors}}
+		<div class="custom-archive-wrap">
+			{{#foreach authors to="3"}}
+			<div class="custom-archive-item">
+				{{#if profile_image}}
+				<a href="{{url}}" class="global-image">
+					{{>images/archive_image archive_image=profile_image alt=name}}
+				</a>
+				{{else}}
+				<a href="{{url}}" class="no-image">
+					{{>icons/site/user}}
+				</a>
+				{{/if}}
+				<div class="global-dynamic-color">
+					<h2><a href="{{url}}">{{name}}</a></h2>
+					{{#if bio}}<p>{{bio}}</p>{{/if}}
+				</div>
+			</div>
+			{{/foreach}}
+			{{#foreach authors from="4"}}
+			{{#if @first}}
+			<h3 class="custom-archive-heading global-dynamic-color">{{t "See also"}}</h3>
+			{{/if}}
+			<div class="custom-archive-item bottom">
+				{{#if profile_image}}
+				<a href="{{url}}" class="global-image">
+					{{>images/archive_image archive_image=profile_image alt=name}}
+				</a>
+				{{else}}
+				<a href="{{url}}" class="no-image">
+					{{>icons/site/user}}
+				</a>
+				{{/if}}
+				<div class="global-dynamic-color">
+					<h2><a href="{{url}}">{{name}}</a></h2>
+				</div>
+			</div>
+			{{/foreach}}
+		</div>
+		{{/if}}
+		{{/get}}
+	</div>
+	{{>images/background_cover background_cover=feature_image}}
+</div>
+{{#get "posts" limit="4" include="authors,tags,tiers" as |special_posts|}}
+{{#if special_posts}}
+{{>related is_alternate=true label=(t "Check out the latest posts")}}
+{{/if}}
+{{/get}}
+{{/post}}

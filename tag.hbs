@@ -1,0 +1,15 @@
+{{!< default}}
+{{#tag}}
+{{#contentFor "plural_items"}}
+{{plural ../pagination.total empty=(t "No posts") singular=(t "1 post") plural=(t "% posts")}}
+{{/contentFor}}
+<div class="archive-section global-padding global-dynamic-color">
+	<h1 class="archive-title global-title-large">{{name}}</h1>
+	{{#if description}}
+	<p class="archive-excerpt global-excerpt">{{description}}</p>
+	{{/if}}
+	{{>images/background_cover background_cover=feature_image}}
+</div>
+{{/tag}}
+{{>loop}}
+{{pagination}}

@@ -1,0 +1,27 @@
+{{!< default}}
+{{#post}}
+<div class="post-section{{#if feature_image}} is-bg-cover{{/if}}">
+	{{>post_header membership_page=true post_center=true show_background_cover=true}}
+</div>
+{{#if html}}
+<div class="membership-faq-section">
+	<div class="membership-faq-wrap">
+		<h2>{{t "FAQs"}}</h2>
+		<div class="membership-faq-content post-content">
+			{{content}}
+		</div>
+	</div>
+</div>
+{{#get "posts" limit="5" filter="visibility:[members,paid,tiers]" include="authors,tiers" as |special_posts|}}
+	{{#if special_posts}}
+		{{>related label=(t "The latest posts only for subscribers")}}
+	{{/if}}
+{{/get}}
+{{else}}
+{{#get "posts" limit="4" filter="visibility:[members,paid,tiers]" include="authors,tags,tiers" as |special_posts|}}
+	{{#if special_posts}}
+		{{>related is_alternate=true label=(t "The latest posts only for subscribers")}}
+	{{/if}}
+{{/get}}
+{{/if}}
+{{/post}}

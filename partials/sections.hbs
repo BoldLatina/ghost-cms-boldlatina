@@ -1,0 +1,9 @@
+{{! Detailed instructions can be found in the Documentation >> Activation >> Special sections }}
+
+{{#foreach posts limit="1"}}
+	{{#get "posts" limit="5" filter="tag:{{primary_tag.slug}}+id:-{{id}}" include="authors,tiers" as |special_posts|}}
+		{{#if special_posts}}
+			{{>related label=(t "In case you missed it")}}
+		{{/if}}
+	{{/get}}
+{{/foreach}}

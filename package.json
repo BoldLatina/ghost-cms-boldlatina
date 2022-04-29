@@ -1,0 +1,68 @@
+{
+    "name": "daigo",
+    "demo": "https://daigo.fueko.net",
+    "version": "1.4.0",
+    "author": {
+        "name": "fueko",
+        "email": "hello@fueko.net",
+        "url": "https://fueko.net"
+    },
+    "keywords": [
+        "ghost-theme"
+    ],
+    "config": {
+        "posts_per_page": 6,
+        "card_assets": {
+            "exclude": ["bookmark", "gallery", "blockquote", "button"]
+        },
+        "image_sizes": {
+            "m": {
+                "width": 400
+            },
+            "l": {
+                "width": 800
+            },
+            "xl": {
+                "width": 1600
+            }
+        },
+        "custom": {
+            "color_scheme": {
+                "type": "select",
+                "options": ["Light", "Dark", "Auto"],
+                "default": "Light"
+            },
+            "global_background_color_in_hex_string": {
+                "type": "text"
+            },
+            "publication_cover_only_on_homepage": {
+                "type": "boolean",
+                "default": false
+            },
+            "search_api_key": {
+                "type": "text"
+            },
+            "contact_form_endpoint": {
+                "type": "text"
+            },
+            "footer_copyright": {
+                "type": "text"
+            },
+            "hero_title_text": {
+                "type": "text",
+                "default": "Thoughts, stories and ideas",
+                "group": "homepage"
+            },
+            "hero_title_position": {
+                "type": "select",
+                "options": ["Center", "Center and overlap", "Left", "Left and overlap"],
+                "default": "Center",
+                "group": "homepage"
+            },
+            "disqus_shortname": {
+                "type": "text",
+                "group": "post"
+            }
+        }
+    }
+}

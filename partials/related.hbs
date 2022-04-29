@@ -1,0 +1,20 @@
+{{#if is_alternate}}
+<div class="loop-section">
+	<h3 class="loop-subtitle global-subtitle global-dynamic-color">{{label}}</h3>
+	<div class="loop-wrap">
+		{{#foreach posts}}
+		{{>item is_loop=true is_big=false show_excerpt=false show_time=true}}
+		{{/foreach}}
+	</div>
+</div>
+{{else}}
+<div class="special-section">
+	<h3 class="global-subtitle">{{label}}</h3>
+	<div class="special-wrap global-dynamic-color">
+		{{#foreach posts}}
+		{{>item is_special=true}}
+		{{/foreach}}
+		<div class="global-cover is-footer"></div>
+	</div>
+</div>
+{{/if}}

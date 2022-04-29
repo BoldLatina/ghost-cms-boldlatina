@@ -1,0 +1,17 @@
+<header class="header-section{{#if show_header_background}} global-dynamic-color is-color-bg{{/if}}">
+	<div class="header-wrap">
+		<div class="header-logo">{{>logo}}</div>
+		<div class="header-nav">
+			{{>search is_icon=true is_mobile=true}}
+			<input id="toggle" class="header-checkbox" type="checkbox">
+			<label class="header-toggle" for="toggle">
+				<span>
+					<span class="bar"></span>
+					<span class="bar"></span>
+					<span class="bar"></span>
+				</span>
+			</label>
+			<nav>{{navigation}}</nav>
+		</div>
+	</div>
+</header>

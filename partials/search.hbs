@@ -1,0 +1,54 @@
+{{#if @custom.search_api_key}}
+{{#if is_icon}}
+	{{#if is_mobile}}
+	<span class="header-search search-open is-mobile">{{>icons/site/search}}</span>
+	{{else}}
+	<li class="header-search search-open"><span>{{>icons/site/search}}{{t "Search"}}</span></li>
+	{{/if}}
+{{/if}}
+{{#if is_widget}}
+<div class="search-section">
+	<div class="search-wrap">
+		<div class="search-content">
+			<form class="search-form" onsubmit="return false">
+				<input class="search-input" type="text" placeholder="{{t "Search"}}">
+				<div class="search-meta">
+					<span class="search-info">{{t "Please enter at least 3 characters"}}</span>
+					<span class="search-counter is-hide">
+						<span class="search-counter-results">0</span>
+						{{t "Results for your search"}}
+					</span>
+				</div>
+				<span class="search-close">{{>icons/site/close}}</span>
+			</form>
+			<div class="search-results global-image"></div>
+			{{#get "tags" limit="10" filter="visibility:public" include="count.posts" order="count.posts desc" as |tags_cloud|}}
+			{{#if tags_cloud}}
+			<div class="search-tags">
+				{{#foreach tags}}
+				{{#if @first}}
+				<h3 class="global-subtitle">{{t "Popular tags"}}</h3>
+				{{/if}}
+				<a class="search-tag global-button" href="{{url}}">{{name}}</a>
+				{{/foreach}}
+			</div>
+			{{/if}}
+			{{/get}}
+		</div>
+	</div>
+	<div class="search-overlay"></div>
+</div>
+{{#contentFor "script_js"}}
+<script>
+const options = {
+	api:'{{@site.url}}/ghost/api/v4/content/posts/?key='+"{{@custom.search_api_key}}"+'&limit=all&fields=url,title,feature_image,published_at,custom_excerpt,visibility,html',
+	threshold: 0.1,
+	ignoreLocation: true,
+	keys: ['title','custom_excerpt','html'],
+	images: true,
+	limit: 14
+}
+</script>
+{{/contentFor}}
+{{/if}}
+{{/if}}

@@ -1,0 +1,9 @@
+{{^if access}}
+{{^has visibility="public"}}
+<div class="global-members-label{{^if is_loop}} global-dynamic-color{{/if}}">
+	{{#has visibility="paid"}}{{t "Paid-members"}}{{/has}}
+	{{#has visibility="tiers"}}{{#foreach tiers visibility="all"}}{{name}}{{#if @last}}{{else}}, {{/if}}{{/foreach}}{{/has}}
+	{{#has visibility="members"}}{{t "Members"}}{{/has}}
+</div>
+{{/has}}
+{{/if}}

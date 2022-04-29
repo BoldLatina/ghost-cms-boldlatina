@@ -1,0 +1,11 @@
+<div class="loop-section">
+	<h3 class="loop-subtitle global-subtitle global-dynamic-color">{{#is "tag,author"}}{{{block "plural_items"}}}{{else}}{{t "See what we’ve written lately"}}{{/is}}</h3>
+	<div class="loop-wrap">
+		{{#foreach posts to=2}}
+		{{>item is_loop=true is_big=true show_excerpt=true show_time=true}}
+		{{/foreach}}
+		{{#foreach posts from=3}}
+		{{>item is_loop=true is_big=false show_excerpt=false show_time=true}}
+		{{/foreach}}
+	</div>
+</div>

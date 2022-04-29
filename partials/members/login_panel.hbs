@@ -1,0 +1,5 @@
+{{#if @member}}
+<li class="account"><a href="{{@site.url}}/account/" class="global-button-arrow">{{>icons/site/arrow}}{{t "Account"}}</a></li>
+{{else}}
+<li class="signup"><a href="{{@site.url}}/membership/" class="global-button-arrow">{{>icons/site/arrow}}{{t "Join"}}</a></li>
+{{/if}}

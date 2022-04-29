@@ -1,0 +1,11 @@
+<div class="hero-section global-padding global-dynamic-color">
+	<div class="hero-wrap">
+		{{#if @custom.hero_title_text}}
+		<div class="hero-top{{#match @custom.hero_title_position "Center"}} is-center{{/match}}{{#match @custom.hero_title_position "Center and overlap"}} is-center is-overlap{{/match}}{{#match @custom.hero_title_position "Left and overlap"}} is-overlap{{/match}}">
+			<h1 class="hero-title">{{@custom.hero_title_text}}</h1>
+		</div>
+		{{/if}}
+		{{>featured}}
+	</div>
+	{{>images/background_cover background_cover=@site.cover_image}}
+</div>

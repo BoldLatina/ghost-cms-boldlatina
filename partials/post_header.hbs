@@ -1,0 +1,55 @@
+<div class="post-header global-dynamic-color{{#if membership_page}}{{^if html}} membership-no-faq{{/if}}{{/if}}">
+	<div class="post-header-wrap{{#if post_center}} is-center{{else}}{{#is "page"}}{{^if feature_image}} is-center{{/if}}{{/is}}{{/if}}">
+		<div class="post-header-content">
+			<div>
+				<h1 class="post-title">{{title}}</h1>
+				{{#if custom_excerpt}}
+				<p class="post-excerpt global-excerpt">{{custom_excerpt}}</p>
+				{{else if membership_page}}
+				<p class="post-excerpt global-excerpt">{{t "Unlock full access to {site-title} and see the entire library of subscribers-only content & updates" site-title=@site.title}}</p>
+				{{/if}}
+			</div>
+			{{^is "page"}}
+			<div class="post-meta global-meta">
+				{{t "by"}}
+				{{#has author="count:1"}}
+				{{authors}}
+				{{else has author="count:2"}}
+				{{authors separator=(t "and")}}
+				{{else has author="count:3"}}
+				{{authors to="2"}}{{t "and"}}{{authors from="3"}}
+				{{else has author="count:>3"}}
+				{{authors}}
+				{{/has}}{{#if tags}}{{tags limit="all" prefix=(t "in")}}{{/if}}
+				<time datetime="{{date format="YYYY-MM-DD"}}">{{date published_at format="LL"}} — {{reading_time minute=(t "1 minute read") minutes=(t "% minutes read")}}</time>
+			</div>
+			{{/is}}
+		</div>
+		{{#if show_background_cover}}
+		{{>images/background_cover background_cover=feature_image}}
+		{{#if show_feature_image}}
+		{{#if feature_image}}
+		<figure class="post-header-image{{#if post_full_image}} is-full{{/if}}">
+			{{>images/post_image}}
+			{{#if feature_image_caption}}
+				<figcaption>{{feature_image_caption}}</figcaption>
+			{{/if}}
+		</figure>
+		{{/if}}
+		{{/if}}
+		{{else}}
+		{{>images/background_cover background_cover=false}}
+		{{#if feature_image}}
+		<figure class="post-header-image{{#if post_full_image}} is-full{{/if}}">
+			{{>images/post_image}}
+			{{#if feature_image_caption}}
+				<figcaption>{{feature_image_caption}}</figcaption>
+			{{/if}}
+		</figure>
+		{{/if}}
+		{{/if}}
+	</div>
+	{{#if membership_page}}
+	{{>members/tiers}}
+	{{/if}}
+</div>
